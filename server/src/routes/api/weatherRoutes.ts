@@ -10,10 +10,19 @@ router.post('/', (req, res) => {
   // TODO: save city to search history
 });
 
-// TODO: GET search history
-router.get('/history', async (req, res) => {});
+// GET search history
+router.get('/history', async (req, res) => {
+  res.json(await HistoryService.getCities());
+});
 
-// * BONUS TODO: DELETE city from search history
-router.delete('/history/:id', async (req, res) => {});
+// * BONUS: DELETE city from search history
+router.delete('/history/:id', async (req, res) => {
+  const requestedId = Number.parseInt(req.params.id);
+  if (requestedId !== -1) {
+    HistoryService.removeCity(requestedId);
+    return res.json('Term deleted');
+  }
+  return res.json('No match found');
+});
 
 export default router;
