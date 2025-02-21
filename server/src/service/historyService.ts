@@ -29,7 +29,8 @@ class HistoryService {
   // Define a write method that writes the updated cities array to the searchHistory.json file
   private async write(cities: City[]) {
     try {
-    fs.writeFile('searchHistory.json', JSON.stringify(cities))}
+    await fs.writeFile('searchHistory.json', JSON.stringify(cities, null, 2));
+  }
     catch (error) {
       console.error('Error writing file:', error);
     }
@@ -37,22 +38,28 @@ class HistoryService {
 
   // Define a getCities method that reads the cities from the searchHistory.json file and returns them as an array of City objects
   async getCities() {
-    const cities: City[] = JSON.parse(await this.read());
-    return cities;
+    try {
+      const cities: City[] = JSON.parse(await this.read());
+      return cities;}
+    catch (error) {
+      console.error('Error getting cities:', error);
+      return [];
+    }
   }
 
-  // TODO Define an addCity method that adds a city to the searchHistory.json file
+  // Define an addCity method that adds a city to the searchHistory.json file
   async addCity(city: string) {
     const cities: City[] = JSON.parse(await this.read());
-    const cityId = cities.length + 1;
+
+    const maxID = cities.reduce((max, city) => (city.id > max ? city.id : max), 0);
+    const cityId = maxID + 1;
     cities.push(new City(city, cityId));
     await this.write(cities);
   }
-  // * BONUS TODO: Define a removeCity method that removes a city from the searchHistory.json file
+  // * BONUS: Define a removeCity method that removes a city from the searchHistory.json file
   async removeCity(id: number) {
     const cities: City[] = JSON.parse(await this.read());
-    const cityId = parseInt(id);
-    const updatedCities = cities.filter(city => city.id !== cityId);
+    const updatedCities = cities.filter(city => city.id !== id);
     await this.write(updatedCities);
   }
 }

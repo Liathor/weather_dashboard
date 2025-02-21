@@ -5,13 +5,18 @@ import HistoryService from '../../service/historyService.js';
 import WeatherService from '../../service/weatherService.js';
 
 // TODO: POST Request with city name to retrieve weather data
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   // TODO: GET weather data from city name
+  console.log(req.body.cityName);
+const city = req.body.cityName;
+const weatherData = await WeatherService.getWeatherForCity(city);
+res.json(weatherData);
   // TODO: save city to search history
+HistoryService.addCity(city);
 });
 
 // GET search history
-router.get('/history', async (req, res) => {
+router.get('/history', async (_req, res) => {
   res.json(await HistoryService.getCities());
 });
 
