@@ -34,7 +34,7 @@ class WeatherService {
   //  Create fetchLocationData method
   // Fetch weather forecast data for city using latitude and longitude
    private async fetchLocationData(lat: number, lon: number) {
-      this.baseURL = `api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${this.APIKey}`;
+      this.baseURL = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${this.APIKey}`;
       const response = await fetch(this.baseURL);
       if (!response.ok) {
         console.log('API fetchWeatherData not working');
