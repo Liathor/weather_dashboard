@@ -15,6 +15,8 @@ class Weather {
   humidity: number;
   windSpeed: number;
   icon: string;
+  date?: string;
+  city?: string;
 
   constructor(tempF: number, humidity: number, windSpeed: number, icon: string) {
     this.tempF = tempF;
@@ -87,7 +89,9 @@ class WeatherService {
       tempF: parseInt(((responseList.main.temp- 273.15) * (9 / 5) + 32).toFixed(0)),
       humidity: responseList.main.humidity,
       windSpeed: responseList.wind.speed,
-      icon: responseList.weather[0].icon
+      icon: responseList.weather[0].icon,
+      date: responseList.dt_txt.split(' ')[0],
+      city: this.cityName
     }
     console.log('current weather: ', currentWeather);
     return currentWeather;
@@ -102,7 +106,8 @@ class WeatherService {
         tempF: parseInt(((forecast.main.temp- 273.15) * (9 / 5) + 32).toFixed(0)),
         humidity: forecast.main.humidity,
         windSpeed: forecast.wind.speed,
-        icon: forecast.weather[0].icon
+        icon: forecast.weather[0].icon,
+        date: forecast.dt_txt.split(' ')[0]
       }
       forecastArray.push(forecastWeather);
     }
