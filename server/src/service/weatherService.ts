@@ -11,16 +11,16 @@ interface Coordinates {
 
 // TODO: Define a class for the Weather object
 class Weather {
-  temp: number;
+  tempF: number;
   humidity: number;
-  wind: number;
-  weather: string;
+  windSpeed: number;
+  icon: string;
 
-  constructor(temp: number, humidity: number, wind: number, weather: string) {
-    this.temp = temp;
+  constructor(tempF: number, humidity: number, windSpeed: number, icon: string) {
+    this.tempF = tempF;
     this.humidity = humidity;
-    this.wind = wind;
-    this.weather = weather;
+    this.windSpeed = windSpeed;
+    this.icon = icon;
   }
 }
 
@@ -84,10 +84,10 @@ class WeatherService {
   private parseCurrentWeather(response: any): Weather {
     const responseList = response.list[0];
     let currentWeather: Weather = {
-      temp: responseList.main.temp,
+      tempF: parseInt(((responseList.main.temp- 273.15) * (9 / 5) + 32).toFixed(0)),
       humidity: responseList.main.humidity,
-      wind: responseList.wind.speed,
-      weather: responseList.weather[0].icon
+      windSpeed: responseList.wind.speed,
+      icon: responseList.weather[0].icon
     }
     console.log('current weather: ', currentWeather);
     return currentWeather;
@@ -99,10 +99,10 @@ class WeatherService {
     for (let i = 1; i < 6; i++) {
       const forecast = weatherData.list[i];
       let forecastWeather: Weather = {
-        temp: forecast.main.temp,
+        tempF: parseInt(((forecast.main.temp- 273.15) * (9 / 5) + 32).toFixed(0)),
         humidity: forecast.main.humidity,
-        wind: forecast.wind.speed,
-        weather: forecast.weather[0].icon
+        windSpeed: forecast.wind.speed,
+        icon: forecast.weather[0].icon
       }
       forecastArray.push(forecastWeather);
     }
