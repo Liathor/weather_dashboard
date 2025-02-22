@@ -1,106 +1,34 @@
-# Weather Dashboard
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Render.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Use the 5-day weather forecast APILinks to an external site. to retrieve weather data for cities.
+# Weather Forecast App
 
-The base URL should look like the following:
+## Description
+This app allows for a user to enter a city name, upon which they will be provided with the current weather conditions of that city, as well as the forecasted weather for the next 5 days. It will also remember the cities the user has looked up, allowing them to check the weather conditions there at the click of a button. They can also delete cities they do not want in their list.
 
-https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-After registering for a new API key, you may need to wait up to 2 hours for that API key to activate.
+## Table Of Contents
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [License](#license)
+4. [Contribution Guidelines](#contribution)
+5. [Tests](#tests)
+6. [Questions](#questions)
 
-For more information on how to work with the OpenWeather API, refer to the Full-Stack Blog on how to use API keysLinks to an external site..
+## Installation
+Download the files from GitHub, and in a console, run 'npm i'. After that is done, you will next need to sign up for an API Key with OpenWeatherMap, and enter that API Key in a .env file. With those two steps done. You run the app using 'npm start' and can access it in a browser.
 
-# User Story
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-# Acceptance Criteria
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city, and that city is added to the search history
-DONE
+## Usage
+None at the moment
 
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, a description of the weather for the icon's `alt` tag, the temperature, the humidity, and the wind speed
-DONE
+## License
+Distributed under the MIT. Visit [MIT](https://opensource.org/licenses/MIT) for more information.
 
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-DONE
+## Contribution Guidelines
+None at the moment
 
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-# Getting Started
-On the back end, the application should include a searchHistory.json file that will be used to store and retrieve cities using the fs module.
+## Tests
+Many tests in Visual Studio and on Google Chrome.
 
-The following HTML route should be created:
-
-GET * should return the index.html file.
-The following API routes should be created:
-
-GET /api/weather/history should read the searchHistory.json file and return all saved cities as JSON.
-
-POST /api/weather should receive a city name to save on the request body, add it to the searchHistory.json file, and then return associated weather data to the client. You'll need to find a way to give each city name a unique id when it's saved (look into npm packages that could do this for you).
-# Hints
-Using the 5-day weather forecast API, you'll notice that you'll need to pass in coordinates instead of just a city name. Using the OpenWeatherMap APIs, how could we retrieve geographical coordinates given a city name?
-
-How could we make the OpenWeather API calls server-side, parse the data, and then send the parsed data client-side?
-
-# Bonus
-This application offers the DELETE functionality on the front end. As a bonus, try to add the DELETE route to the application using the following guideline:
-
-DELETE /api/weather/history/:id should receive a route parameter that contains the id of a city name to delete. To delete a city, you'll need to read all the cities from the searchHistory.json file, remove the city with the given id property, and then rewrite the cities to the searchHistory.json file.
-Grading Requirements
-note
-If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
-
-A repository that has no code
-
-A repository that includes a unique name but nothing else
-
-A repository that includes only a README file but nothing else
-
-A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-Technical Acceptance Criteria: 40%
-Satisfies all of the preceding acceptance criteria plus the following:
-
-Application uses the OpenWeather API to retrieve weather data.
-
-Application back end must store cities that have a unique id in a JSON file.
-
-Application must be deployed to Render.
-
-Deployment: 32%
-Application deployed at live URL.
-
-Application loads with no errors.
-
-Application GitHub URL submitted.
-
-GitHub repository that contains application code.
-
-Application Quality: 15%
-Application user experience is intuitive and easy to navigate.
-
-Application user interface style is clean and polished.
-
-Application resembles the mock-up functionality provided in the Challenge instructions.
-
-Repository Quality: 13%
-Repository has a unique name.
-
-Repository follows best practices for file structure and naming conventions.
-
-Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-Repository contains multiple descriptive commit messages.
-
-Repository contains a quality README file with description, screenshot, and link to deployed application.
-
-Bonus
-Fulfilling the following can add 10 points to your grade. Note that the highest grade you can achieve is still 100:
-
-Application allows users to delete cities.
+## Questions
+Feel free to reach out to me if you have any questions, or if you'd like to find out what else I've worked on. My details are as follows:  
+  Github: https://github.com/Liathor  
+  Email: dyermisha@gmail.com  
