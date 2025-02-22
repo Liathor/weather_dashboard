@@ -14,10 +14,13 @@ This app allows for a user to enter a city name, upon which they will be provide
 6. [Questions](#questions)
 
 ## Installation
-Download the files from GitHub, and in a console, run 'npm i'. After that is done, you will next need to sign up for an API Key with OpenWeatherMap, and enter that API Key in a .env file. With those two steps done. You run the app using 'npm start' and can access it in a browser.
+Download the files from GitHub, and in a console, run 'npm i'. After that is done, you will next need to sign up for an API Key with OpenWeatherMap, and enter that API Key in a .env file. With those two steps done. You run the app using 'npm start' and can access it in a browser.  
+
+You can also visit the render site here:  
+https://weather-dashboard-gbh4.onrender.com/?
 
 ## Usage
-None at the moment
+Run the app using 'npm start'. Use the search bar to enter city names and their weather will be displayed.
 
 ## License
 Distributed under the MIT. Visit [MIT](https://opensource.org/licenses/MIT) for more information.
