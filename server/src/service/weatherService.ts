@@ -45,6 +45,7 @@ class WeatherService {
   private async fetchAndDestructureLocationData() {
     try {
       const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&limit=1&appid=${this.APIKey}`);
+      console.log(`fetching location data from http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&limit=1&appid=${this.APIKey}`);
 
       if (!response.ok) {
         console.log('API for locationData not working');

@@ -14,5 +14,9 @@
   {
     "name": "Calgary",
     "id": 4
+  },
+  {
+    "name": "Edmonton",
+    "id": 5
   }
 ]
