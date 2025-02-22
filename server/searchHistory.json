@@ -5,18 +5,18 @@
   },
   {
     "name": "Ingersoll",
-    "id": 2
-  },
-  {
-    "name": "Toronto",
-    "id": 3
-  },
-  {
-    "name": "Ingersoll",
     "id": 4
   },
   {
-    "name": "Ingersoll",
+    "name": "Markham",
+    "id": 6
+  },
+  {
+    "name": "London",
+    "id": 7
+  },
+  {
+    "name": "New York",
     "id": 5
   }
 ]

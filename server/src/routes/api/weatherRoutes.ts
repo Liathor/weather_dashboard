@@ -31,13 +31,13 @@ router.get('/history', async (_req, res) => {
  });
 
 // * BONUS: DELETE city from search history
-// router.delete('/history/:id', async (req, res) => {
-//   const requestedId = Number.parseInt(req.params.id);
-//   if (requestedId !== -1) {
-//     HistoryService.removeCity(requestedId);
-//     return res.json('Term deleted');
-//   }
-//   return res.json('No match found');
-// });
+ router.delete('/history/:id', async (req, res) => {
+   const requestedId = Number.parseInt(req.params.id);
+   if (requestedId !== -1) {
+     HistoryService.removeCity(requestedId);
+     return res.json('Term deleted');
+   }
+   return res.json('No match found');
+ });
 
 export default router;

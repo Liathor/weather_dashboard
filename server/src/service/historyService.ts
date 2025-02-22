@@ -55,6 +55,16 @@ class HistoryService {
   // Define an addCity method that adds a city to the searchHistory.json file
   async addCity(city: string) {
     console.log('add city triggered');
+    
+    // Check if the city already exists by its name
+    const cityExists = this.cities.some(existingCity => existingCity.name.toLowerCase() === city.toLowerCase());
+
+    if (cityExists) {
+      console.log('City already exists in history');
+      return this.cities; // Return current list if city is already in history
+    }
+    
+    // If city is not a duplicate, add it
     const newCity = new City(city, this.cities.length + 1);
     this.cities.push(newCity);
     await this.write(this.cities);
