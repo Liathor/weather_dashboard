@@ -22,12 +22,11 @@ router.post('/', async (req, res) => {
 
 // GET search history
 router.get('/history', async (_req, res) => {
-  console.log('getting history');
   try {
     const history = await HistoryService.getCities();
-    return res.json(history);}
+    res.json(history);}
   catch {
-    return res.json('No history found');}
+    res.json('No history found');}
  });
 
 // * BONUS: DELETE city from search history

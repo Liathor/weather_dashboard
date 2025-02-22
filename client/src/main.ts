@@ -58,6 +58,9 @@ const fetchSearchHistory = async () => {
       'Content-Type': 'application/json',
     },
   });
+  if (!history.ok) {
+    console.error('Failed to fetch history');
+  } 
   return history;
 };
 
