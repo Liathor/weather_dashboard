@@ -4,19 +4,15 @@
     "id": 1
   },
   {
-    "name": "Ingersoll",
-    "id": 4
-  },
-  {
     "name": "Markham",
     "id": 6
   },
   {
-    "name": "London",
-    "id": 7
-  },
-  {
     "name": "New York",
     "id": 5
+  },
+  {
+    "name": "San Diego",
+    "id": 4
   }
 ]

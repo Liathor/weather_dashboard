@@ -17,6 +17,7 @@ class Weather {
   icon: string;
   date?: string;
   city?: string;
+  iconDescription?: string;
 
   constructor(tempF: number, humidity: number, windSpeed: number, icon: string) {
     this.tempF = tempF;
@@ -91,7 +92,8 @@ class WeatherService {
       windSpeed: responseList.wind.speed,
       icon: responseList.weather[0].icon,
       date: responseList.dt_txt.split(' ')[0],
-      city: this.cityName
+      city: this.cityName,
+      iconDescription: responseList.weather[0].description
     }
     console.log('current weather: ', currentWeather);
     return currentWeather;
@@ -107,7 +109,8 @@ class WeatherService {
         humidity: forecast.main.humidity,
         windSpeed: forecast.wind.speed,
         icon: forecast.weather[0].icon,
-        date: forecast.dt_txt.split(' ')[0]
+        date: forecast.dt_txt.split(' ')[0],
+        iconDescription: forecast.weather[0].description
       }
       forecastArray.push(forecastWeather);
     }
