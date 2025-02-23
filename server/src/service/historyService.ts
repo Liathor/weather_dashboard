@@ -39,8 +39,8 @@ class HistoryService {
   private async write(cities: City[]) {
     console.log('write city triggered');
     try {
-    await fs.writeFile(this.filePath, JSON.stringify(cities, null, 2));
-  }
+      await fs.writeFile(this.filePath, JSON.stringify(cities, null, 2));
+    }
     catch (error) {
       console.error('Error writing file:', error);
     }
@@ -57,7 +57,7 @@ class HistoryService {
     console.log('add city triggered');
     
     // Check if the city already exists by its name
-    const cityExists = this.cities.some(existingCity => existingCity.name.toLowerCase() === city.toLowerCase());
+    const cityExists: boolean = this.cities.some(existingCity => existingCity.name.toLowerCase() === city.toLowerCase());
 
     if (cityExists) {
       console.log('City already exists in history');
@@ -68,6 +68,7 @@ class HistoryService {
     const newCity = new City(city, this.cities.length + 1);
     this.cities.push(newCity);
     await this.write(this.cities);
+
     return this.cities;
   }
 

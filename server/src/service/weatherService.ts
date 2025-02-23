@@ -42,7 +42,7 @@ class WeatherService {
 
 // Create fetchAndDestructureLocationData method
   // Fetch location data for city and destructure it
-  private async fetchAndDestructureLocationData() {
+  private async fetchAndDestructureLocationData(): Promise<Coordinates | null> {
     try {
       const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&limit=1&appid=${this.APIKey}`);
       console.log(`fetching location data from http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&limit=1&appid=${this.APIKey}`);
@@ -75,8 +75,8 @@ class WeatherService {
   // Create fetchWeatherData method
   // Grab current weather data for city using coordinates
   private async fetchWeatherData(coordinates: Coordinates) {
-    const response = await fetch(`${this.baseURL}/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.APIKey}`);
-    console.log (`fetching current weather data from ${this.baseURL}/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.APIKey}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.APIKey}`);
+    console.log (`fetching current weather data from https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.APIKey}&cnt=8`);
     if (!response.ok) {
       console.log('API fetchWeatherData not working');
     }
@@ -96,15 +96,20 @@ class WeatherService {
       city: this.cityName,
       iconDescription: responseList.weather[0].description
     }
-    console.log('current weather: ', currentWeather);
     return currentWeather;
   }
 
   // TODO: Complete buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any): Weather[] {
     let forecastArray: Weather[] = [currentWeather];
-    for (let i = 1; i < 6; i++) {
-      const forecast = weatherData.list[i];
+    //console.log('weatherData:', weatherData);
+    const specificDates = weatherData.list.filter((data: any) => data.dt_txt.includes('12:00:00'));
+    
+    // console.log('SpecificDates:', specificDates);
+
+    specificDates.slice(0, 5).forEach((forecast: any) => {
+    //for (let i = 0; i < 6; i++) {
+      //const forecast = specificDates[i];
       let forecastWeather: Weather = {
         tempF: parseInt(((forecast.main.temp- 273.15) * (9 / 5) + 32).toFixed(0)),
         humidity: forecast.main.humidity,
@@ -114,7 +119,8 @@ class WeatherService {
         iconDescription: forecast.weather[0].description
       }
       forecastArray.push(forecastWeather);
-    }
+      console.log('forecastArray:', forecastArray);
+    });
     return forecastArray;
   }
 
@@ -123,7 +129,6 @@ class WeatherService {
 
     // Find Coordinates
     try {
-      console.log(`searching for ${city}`);
       this.cityName = city;
       const cityCoordinates = await this.fetchAndDestructureLocationData();
     if (!cityCoordinates) {

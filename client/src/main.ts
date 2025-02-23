@@ -42,10 +42,11 @@ const fetchWeather = async (cityName: string) => {
     },
     body: JSON.stringify({ cityName }),
   });
+  if (!response.ok) {
+    console.error('Failed to fetch weather data');
+  }
 
   const weatherData = await response.json();
-
-  console.log('weatherData: ', weatherData);
 
   renderCurrentWeather(weatherData[0]);
   renderForecast(weatherData.slice(1));

@@ -9,13 +9,14 @@ router.post('/', async (req, res) => {
   try {
   const city = req.body.cityName;
 
+  // TODO: get weather data for city
   const weatherData = await WeatherService.getWeatherForCity(city);
 
   // TODO: save city to search history
   await HistoryService.addCity(city);
 
   return res.json(weatherData);}
-  catch {
+  catch (error) {
     return res.json('Weather data retrieval failed');
   }
 });
